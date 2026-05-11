@@ -1,0 +1,40 @@
+@using Microsoft.AspNetCore.Components
+@using RachaAi.Models
+
+<div class="card shadow-sm mb-3">
+    
+    <div class="card-body">
+
+        <h5 class="card-title fw-bold">
+            @DadosGrupo.Nome
+        </h5>
+
+        <p class="text-muted mb-2">
+            Categoria: @DadosGrupo.Categoria
+        </p>
+
+        <p class="fw-semibold @(DadosGrupo.NoVermelho ? "text-danger" : "text-success")">
+
+            @if (DadosGrupo.NoVermelho)
+            {
+                <span>Você deve: </span>
+            }
+            else
+            {
+                <span>Você recebe: </span>
+            }
+
+            @DadosGrupo.ValorPendente.ToString("C")
+
+        </p>
+
+    </div>
+
+</div>
+
+@code {
+
+    [Parameter]
+    public Grupo DadosGrupo { get; set; } = new();
+
+}

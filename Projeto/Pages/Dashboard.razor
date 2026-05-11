@@ -1,0 +1,142 @@
+﻿@using RachaAi.Models
+@using RachaAi.Shared
+
+@page "/"
+
+<PageTitle>Dashboard RachaAI</PageTitle>
+
+<h1>Olá, Fulano!</h1>
+
+<p>Este é seu Dashboard:</p>
+
+<div class="row mb-4">
+
+    <div class="col-md-4">
+
+        <div class="card text-center shadow-sm border-0">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+                    Total a Receber
+                </h6>
+
+                <h3 class="text-success fw-bold">
+                    R$ 80,00
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-center shadow-sm border-0">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+                    Total a Pagar
+                </h6>
+
+                <h3 class="text-danger fw-bold">
+                    R$ 470,00
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-center shadow-sm border-0">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+                    Saldo Geral
+                </h6>
+
+                <h3 class="text-danger fw-bold">
+                    -R$ 390,00
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@if (Dados.Count == 0)
+{
+    <div class="alert alert-info mt-4">
+
+        Você ainda não participa de nenhum grupo.
+        Que tal criar um?
+
+    </div>
+}
+else
+{
+    <div class="row">
+
+        @foreach (var exp in Dados)
+        {
+            <div class="col-md-6 col-lg-4">
+
+                <GrupoCard DadosGrupo="exp" />
+
+            </div>
+        }
+
+    </div>
+}
+
+<button class="btn btn-primary rounded-circle shadow-lg position-fixed"
+        style="
+            width:70px;
+            height:70px;
+            bottom:30px;
+            right:30px;
+            font-size:30px;">
+
+    +
+
+</button>
+
+
+@code {
+
+    private List<Grupo> Dados = new()
+    {
+        new Grupo {
+            Nome = "República",
+            Categoria = "Moradia",
+            ValorPendente = 150.00m,
+            NoVermelho = true
+        },
+
+        new Grupo {
+            Nome = "Churrasco",
+            Categoria = "Lazer",
+            ValorPendente = 80.00m,
+            NoVermelho = false
+        },
+
+        new Grupo {
+            Nome = "Viagem",
+            Categoria = "Turismo",
+            ValorPendente = 320.00m,
+            NoVermelho = true
+        }
+    };
+
+
+
+}
